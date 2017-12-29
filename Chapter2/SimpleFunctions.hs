@@ -13,9 +13,14 @@ data Person = Person String String Gender deriving Show
 
 data Gender = Male | Female | Unknown deriving Show
 
-data Manufacturer = Manufacturer String
-data TravelDirection = Past | Future | Both
-data TimeMachine = TimeMachine Manufacturer Integer String TravelDirection Float
+data Manufacturer = Manufacturer String deriving Show
+data TravelDirection = Past | Future | Both deriving Show
+data TimeMachine = TimeMachine { manufacturer :: Manufacturer
+	, model :: Integer
+	, name :: String
+	, direction :: TravelDirection
+	, price :: Float }
+	deriving Show
 
 clientName :: Client -> Maybe String
 clientName client = case client of 
@@ -41,3 +46,11 @@ genderDiversion lst  = if null lst
 				Female -> (0, 1)
 				_ -> (0, 0)
 			_ -> (0, 0)
+
+salePrices :: [TimeMachine] -> [TimeMachine]
+salePrices [x@(TimeMachine { price = p })] = [(x { price = (p / 2) })]
+salePrices lst = case lst of
+	[x@(TimeMachine { price = p })] -> [(x { price = (p / 2) })]
+	x:xs -> (salePrices [x]) ++ (salePrices xs)
+	[] -> []
+
