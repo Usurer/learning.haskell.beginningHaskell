@@ -8,15 +8,21 @@ data Gender = Male | Female | Unknown
 data GenderDistribution = GenderDistribution Int Int Int deriving Show
 
 clientsByGender :: [Person] -> GenderDistribution
-clientsByGender lst = if null lst
+clientsByGender lst = let 
+        male1 m f u = GenderDistribution (m + 1) f u
+        female1 m f u = GenderDistribution m (f + 1) u
+        unknown1 m f u = GenderDistribution m f (u + 1)
+    in
+    if null lst
     then GenderDistribution 0 0 0
     else case head lst of
-        Person _ _ Male -> case clientsByGender (tail lst) of
-            GenderDistribution m f u -> GenderDistribution (m + 1) f u
-        Person _ _ Female -> case clientsByGender (tail lst) of
-            GenderDistribution m f u -> GenderDistribution m (f + 1) u
-        Person _ _ Unknown -> case clientsByGender (tail lst) of
-            GenderDistribution m f u -> GenderDistribution m f (u + 1)
+        Person _ _ Male -> case recurse of
+            GenderDistribution m f u -> male1 m f u
+        Person _ _ Female -> case recurse of
+            GenderDistribution m f u -> female1 m f u
+        Person _ _ Unknown -> case recurse of
+            GenderDistribution m f u -> unknown1 m f u
+    where   recurse = clientsByGender (tail lst)
 
 bob = Person "Bob" "Bobson" Male
 john = Person "John" "Johnsson" Male
@@ -45,10 +51,14 @@ data TimeTravelDirection = Past | Future | Both
     deriving Show
 
 discount :: Float -> [TimeMachine] -> [TimeMachine]
-discount percent lst = if null lst
+discount percent lst = let 
+    discounted p = p * (1 - percent / 100) 
+    recurse = discount percent (tail lst)
+    in
+    if null lst
     then lst
     else case head lst of
-        TimeMachine a b c d price -> TimeMachine a b c d (price / 100 * (100 - percent)) : (discount percent (tail lst))
+        TimeMachine a b c d price -> TimeMachine a b c d (discounted price) : recurse
 
 tm_1 = TimeMachine (Manufacturer "Bob") 1 "xxx" Both 10
 tm_2 = TimeMachine (Manufacturer "Bob") 1 "xxx" Both 15
