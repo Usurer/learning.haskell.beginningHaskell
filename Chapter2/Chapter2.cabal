@@ -5,16 +5,16 @@ name:                Chapter2
 version:             0.1.0.0
 -- synopsis:            
 -- description:         
--- license:             
+license:             MIT
 license-file:        LICENSE
--- author:              
+author:              Usurer
 -- maintainer:          
 -- copyright:           
 -- category:            
 build-type:          Simple
 cabal-version:       >=1.8
 
-executable Chapter2
-  main-is:             SimpleFunctions
-  --other-modules:       SimpleFunctions
+library
+  -- exposed-modules:     
+  -- other-modules: Chapter2.SimpleFunctions
   build-depends:       base ==4.6.*
