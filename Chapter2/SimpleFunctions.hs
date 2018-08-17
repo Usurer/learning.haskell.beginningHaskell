@@ -14,14 +14,14 @@ reverse2 lst = if null lst
 	else reverse2 (tail lst) +++ [head lst]
 
 maxmin :: Ord a => [a] -> (a, a)
-maxmin lst = if null (tail lst)
-	then (head lst, head lst)
-	else (	if fst (maxmin (tail lst)) > head lst
-		then fst (maxmin (tail lst) )
-		else head lst,
-		if snd (maxmin (tail lst)) < head lst
-		then snd (maxmin (tail lst))
-		else head lst
-	     )
+maxmin lst = let h = head lst 
+	in  if null (tail lst)
+	    then (h, h)
+	    else (  if t_max > h then t_max else h,
+		        if t_min < h then t_min else h
+	    )
+        where t = maxmin (tail lst)
+              t_max = fst t
+              t_min = snd t
 
 		
