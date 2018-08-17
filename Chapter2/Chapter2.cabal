@@ -6,7 +6,7 @@ version:             0.1.0.0
 -- synopsis:            
 -- description:         
 license:             MIT
-license-file:        LICENSE
+--license-file:        
 author:              Usurer
 -- maintainer:          
 -- copyright:           
@@ -15,6 +15,8 @@ build-type:          Simple
 cabal-version:       >=1.8
 
 library
+  hs-source-dirs: ./
   -- exposed-modules:     
-  -- other-modules: Chapter2.SimpleFunctions
+  other-modules: SimpleFunctions
+                 AlgebraicDataTypes
   build-depends:       base ==4.6.*
