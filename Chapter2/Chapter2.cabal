@@ -19,4 +19,5 @@ library
   -- exposed-modules:     
   other-modules: SimpleFunctions
                  AlgebraicDataTypes
+                 PatternMatching
   build-depends:       base ==4.6.*

@@ -1,7 +1,7 @@
 module AlgebraicDataTypes where
 
 data Client = GovOrg String
-            | Company String Integer String String
+            | Company String Integer Person String
             | Individual Person Bool
               deriving Show
 
