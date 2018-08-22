@@ -20,4 +20,5 @@ library
   other-modules: SimpleFunctions
                  AlgebraicDataTypes
                  PatternMatching
+                 Ex2_5
   build-depends:       base ==4.6.*
