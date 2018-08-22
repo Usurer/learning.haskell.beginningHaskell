@@ -34,3 +34,22 @@ testClient_6 = Individual (Person "Jack" "Smith" Male) False
 testClient_7 = GovOrg "NASA"
 testList = [testClient_1,testClient_2,testClient_3,testClient_4,testClient_5,testClient_6,testClient_7]
 
+
+{-
+I wanted second param to be Integer, but it causes error messages
+It seems that direct cast would be required.
+So I'd better keep it as Float
+-}
+decreasePrice :: TimeMachine -> Float -> TimeMachine
+decreasePrice tm percent = case tm of
+    TimeMachine a b c d price -> TimeMachine a b c d (price * (1 - percent/100))
+
+decreasePriceList :: [TimeMachine] -> Float -> [TimeMachine]
+
+decreasePriceList [] p = []
+decreasePriceList [a] p = [decreasePrice a p]
+decreasePriceList lst p = (decreasePrice (head lst) p) : (decreasePriceList (tail lst) p)
+
+testMachine_1 = TimeMachine (Manufacturer "NASA") 1 "dsf" Future 9.99
+testMachine_2 = TimeMachine (Manufacturer "NASA") 1 "dsf" Future 10
+testMachine_3 = TimeMachine (Manufacturer "NASA") 1 "dsf" Future 12.3

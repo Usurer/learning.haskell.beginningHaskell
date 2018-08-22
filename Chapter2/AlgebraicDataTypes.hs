@@ -10,8 +10,8 @@ data Person = Person String String Gender
 
 data Gender = Male | Female | Unknown deriving Show
 
-data Manufacturer = Manufacturer String
+data Manufacturer = Manufacturer String deriving Show
 
-data TimeTravelDirection = Future | Past | Both
+data TimeTravelDirection = Future | Past | Both deriving Show
 
-data TimeMachine = TimeMachine Manufacturer Integer String TimeTravelDirection Float
+data TimeMachine = TimeMachine Manufacturer Integer String TimeTravelDirection Float deriving Show
