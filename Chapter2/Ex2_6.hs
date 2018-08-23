@@ -10,8 +10,15 @@ module Ex2_6 where
 -}
 
 ackermann :: Integer -> Integer -> Integer
-ackermann m n | m == 0 = n + 1
+ackermann m n | m == 0          = n + 1
 ackermann m n | m > 0 && n == 0 = ackermann (m - 1) 1
-ackermann m n | m > 0 && n > 0 = ackermann (m - 1) (ackermann m (n - 1))
+ackermann m n | m > 0 && n > 0  = ackermann (m - 1) (ackermann m (n - 1))
 
 
+unzip2 :: [(x, y)] -> ([x], [y])
+unzip2 [] = ([], [])
+unzip2 ((a, b):xs) 
+    | null xs   = ([a], [b])
+    | otherwise = let recurse = unzip2 xs in
+            (a : (fst recurse),
+             b : (snd recurse))
