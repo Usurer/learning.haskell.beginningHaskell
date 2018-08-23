@@ -21,4 +21,5 @@ library
                  AlgebraicDataTypes
                  PatternMatching
                  Ex2_5
+                 Ex2_6
   build-depends:       base ==4.6.*
