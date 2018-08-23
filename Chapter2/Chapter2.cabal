@@ -18,7 +18,9 @@ library
   hs-source-dirs: ./
   -- exposed-modules:     
   other-modules: SimpleFunctions
-                 AlgebraicDataTypes
+                 -- Obsolete: use ADT_Records instead
+                 -- AlgebraicDataTypes
+                 ADT_Records
                  PatternMatching
                  Ex2_5
                  Ex2_6

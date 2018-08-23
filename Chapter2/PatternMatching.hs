@@ -1,5 +1,5 @@
 module PatternMatching where
-import AlgebraicDataTypes
+import ADT_Records
 
 clientName :: Client -> String
 clientName client = case client of
