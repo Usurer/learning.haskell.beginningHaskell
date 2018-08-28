@@ -8,12 +8,20 @@ product1 (x:xs)
     | null xs = x
     | otherwise = x * (product1 xs)
 
+foldProduct :: [Integer] -> Integer
+foldProduct lst = if null lst
+    then 0
+    else foldl (\x y -> x * y) 1 lst
+
 all1 :: [Bool] -> Bool
 all1 [] = error "List can't be empty"
 all1 (x:xs)
     | null xs = x
     | otherwise = x && (all1 xs)
 
+foldAll :: [Bool] -> Bool
+foldAll [] = error "List can't be empty"
+foldAll lst = foldl (\x y -> x && y) True lst
 
 clientName :: Maybe Client -> String
 clientName client = case client of
