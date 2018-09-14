@@ -57,13 +57,24 @@ getClientKind x = case x of
         - add new element to the Set
     In this case we'll have only one run along the initial list.
 -}
-{-
+
+testClient1 = GovOrg { clientId = 1, clientName = "Test"}
+testClient2 = GovOrg { clientId = 2, clientName = "test2"}
+testClient3 = Individual {clientId = 3, person = Person { fName = "Bob", lName = "Bobson" }}
+testData = [testClient1, testClient2, testClient3]
+
 classifyClients1 :: 
     [Client Integer] -> M.Map ClientKind (S.Set (Client Integer))
 classifyClients1 lst = 
-    let m = M.empty in
-    map 
--}
+    L.foldl (\accumMap client ->
+        let kind = getClientKind client in
+        M.insertWith (\existingSet incomingSet ->
+            if (S.null existingSet)
+            then incomingSet
+            else S.union existingSet incomingSet
+        ) kind (S.singleton client) accumMap
+    ) M.empty lst
+
 
 -- This is a test function - I'm trying to understand how to turn
 -- a list into Map. Learn You a Haskell assumes using Folds
